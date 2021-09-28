@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.human.Student;
+import com.company.human.StudentSortByAge;
+import com.company.human.StudentSortByName;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -103,8 +105,29 @@ public class Main {
 
         Student student1 = new Student(12, "Asdas");
         Student student2 = new Student(23, "sadsa");
+        Student student3 = new Student(13, "badsa");
 
         System.out.println(student1.compareTo(student2));
+
+        List<Student> studentArrayList = Arrays.asList(student1, student2, student3);
+
+//        System.out.print("before sort: ");
+//        System.out.println(studentArrayList);
+//        Collections.sort(studentArrayList, new StudentSortByName());
+//        System.out.print("after sort: ");
+//        System.out.println(studentArrayList);
+
+//        System.out.print("before sort: ");
+//        System.out.println(studentArrayList);
+//        Collections.sort(studentArrayList, new StudentSortByAge());
+//        System.out.print("after sort: ");
+//        System.out.println(studentArrayList);
+
+        System.out.print("before sort: ");
+        System.out.println(studentArrayList);
+        Collections.sort(studentArrayList, (o1, o2) -> o1.getAge()-o2.getAge());
+        System.out.print("after sort: ");
+        System.out.println(studentArrayList);
 
     }
 }
