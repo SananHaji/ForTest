@@ -4,8 +4,10 @@ import com.company.human.Student;
 import com.company.human.StudentSortByAge;
 import com.company.human.StudentSortByName;
 
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Main {
@@ -125,9 +127,139 @@ public class Main {
 
         System.out.print("before sort: ");
         System.out.println(studentArrayList);
-        Collections.sort(studentArrayList, (o1, o2) -> o1.getAge()-o2.getAge());
+        studentArrayList.sort(Comparator.comparingInt(Student::getAge));
         System.out.print("after sort: ");
         System.out.println(studentArrayList);
 
+        System.out.println("-----------------------");
+        System.out.println("-----------------------");
+        System.out.println("file IO");
+        System.out.println("-----------------------");
+
+
+        String text = "asdmaskldmaksmdklsamclkas c\naksjdnsajndkasnda\nasdas\tasda\rasda";
+
+        write(text);
+        read();
+        System.out.println("-----------------------");
+
+        writeOSW(text);
+        readISR();
+        System.out.println("-----------------------");
+
+        writeBSW(text);
+        readBSR();
+
+
+    }
+
+    private static void write(String text) {
+        try {
+            File file = new File("C:\\Users\\hacis\\Desktop\\file\\new.txt");
+            FileWriter fileWriter = new FileWriter(file);
+
+            fileWriter.write(text);
+
+            fileWriter.flush();
+            fileWriter.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static void read() {
+        try {
+            File file = new File("C:\\Users\\hacis\\Desktop\\file\\new.txt");
+            FileReader fileReader = new FileReader(file);
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+
+            int ch;
+            while ((ch = fileReader.read()) != -1) {
+                stringBuilder.append((char) ch);
+            }
+
+            System.out.println(stringBuilder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeOSW(String text) {
+        try {
+            File file = new File("C:\\Users\\hacis\\Desktop\\file\\new.txt");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+
+            outputStreamWriter.write(text);
+
+            outputStreamWriter.flush();
+            outputStreamWriter.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void readISR() {
+        try {
+            File file = new File("C:\\Users\\hacis\\Desktop\\file\\new.txt");
+
+            FileInputStream fileInputStream = new FileInputStream(file);
+            InputStreamReader inputStream = new InputStreamReader(fileInputStream);
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            int ch;
+            while ((ch = inputStream.read()) != -1) {
+                stringBuilder.append((char) ch);
+            }
+
+            System.out.println(stringBuilder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void writeBSW(String text) {
+        try {
+            File file = new File("C:\\Users\\hacis\\Desktop\\file\\new.txt");
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(text);
+
+            bufferedWriter.flush();
+            bufferedWriter.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void readBSR() {
+        try {
+            File file = new File("C:\\Users\\hacis\\Desktop\\file\\new.txt");
+
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            int ch;
+            while ((ch = bufferedReader.read()) != -1) {
+                stringBuilder.append((char) ch);
+            }
+
+            System.out.println(stringBuilder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
