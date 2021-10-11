@@ -25,13 +25,6 @@ public class Student implements Comparable<Student> {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "age=" + age +
-                ", name='" + name + '\'' +
-                '}';
-    }
 
     @Override
     public int compareTo(Student o) {
